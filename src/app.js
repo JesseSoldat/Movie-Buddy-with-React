@@ -1,1 +1,41 @@
-console.log('App Works!');
+import 'normalize.css/normalize.css';
+import './styles/styles.scss';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+
+import configureStore from './store/configureStore';
+import { firebase } from './firebase/firebase';
+import AppRouter, {history} from './routers/AppRouter';
+import { login } from './actions/auth';
+import LoadingPage from './components/LoadingPage';
+
+const store = configureStore();
+const jsx = (
+  <Provider store={store}>
+    <AppRouter />
+  </Provider>
+);
+
+let hasRendered = false;
+
+const renderApp = () => {
+  ReactDOM.render(jsx, document.getElementById('app'));
+  hasRendered = true;
+};
+
+ReactDOM.render(<LoadingPage />,
+  document.getElementById('app')
+);
+
+
+firebase.auth().onAuthStateChanged(user => {
+  if(user) {
+    store.dispatch(login(user.uid));
+    renderApp();
+    console.log('have user');    
+  } else {
+    renderApp();
+    console.log('no user');  
+  }
+})

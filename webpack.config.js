@@ -22,7 +22,7 @@ module.exports = (env) => {
       filename: 'bundle.js'
     },
     module: {
-      rules: [{
+      rules: [{ 
         loader: 'babel-loader',
         test: /\.js$/,
         exclude: /node_modules/
