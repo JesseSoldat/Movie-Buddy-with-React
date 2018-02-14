@@ -8,6 +8,7 @@ import configureStore from './store/configureStore';
 import { firebase } from './firebase/firebase';
 import AppRouter, {history} from './routers/AppRouter';
 import { login } from './actions/auth';
+import { startGetFavorites } from './actions/favoriteMovies';
 import LoadingPage from './components/LoadingPage';
 
 const store = configureStore();
@@ -32,10 +33,11 @@ ReactDOM.render(<LoadingPage />,
 firebase.auth().onAuthStateChanged(user => {
   if(user) {
     store.dispatch(login(user.uid));
-    renderApp();
-    console.log('have user');    
+    store.dispatch(startGetFavorites()).then(() => {
+      renderApp();
+    });
+     
   } else {
-    renderApp();
-    console.log('no user');  
+    renderApp();  
   }
 })

@@ -1,11 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import SearchBox from './SearchBox';
-import {Card} from './Card';
+import Card from './Card';
 
 export class SearchMoviesPage extends Component {
   renderCards = () => {
-    console.log(this.props.movies);
     return this.props.movies.map(movie => <Card key={movie.id} movie={movie}  />);
   }
 
