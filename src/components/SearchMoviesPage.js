@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import SearchBox from './SearchBox';
 import Card from './Card';
+import newMoviesSelector from '../selectors/newMovies';
 
 export class SearchMoviesPage extends Component {
   renderCards = () => {
@@ -21,8 +22,8 @@ export class SearchMoviesPage extends Component {
   }
 } 
 
-const mapStateToProps = ({search}) => ({
-  movies: search.movies
+const mapStateToProps = ({search, favorites}) => ({
+  movies: newMoviesSelector(search.movies, favorites)
 });
 
 export default connect(mapStateToProps)(SearchMoviesPage);

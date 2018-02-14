@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {startAddFavorite} from '../actions/favoriteMovies';
+import {startRemoveFromSearch} from '../actions/searchMovies';
 
 export class Card extends Component {
   onFavorite = () => {
     this.props.startAddFavorite(this.props.movie);
+    this.props.startRemoveFromSearch(this.props.movie.id);
   }
 
   render() {
@@ -22,12 +24,14 @@ export class Card extends Component {
   }
 }
 
-const mapStateToProps = (state, {movie}) => ({
-  movie: movie
+const mapStateToProps = ({search}, {movie}) => ({
+  term: search.term,  
+  movie
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  startAddFavorite: (movie) => dispatch(startAddFavorite(movie))
+  startAddFavorite: (movie) => dispatch(startAddFavorite(movie)),
+  startRemoveFromSearch: (id) => dispatch(startRemoveFromSearch(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Card);

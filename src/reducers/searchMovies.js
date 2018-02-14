@@ -1,4 +1,5 @@
 const initialState = {
+  term: '',
   movies: []
 }
 
@@ -7,6 +8,7 @@ export default (state = initialState, action) => {
     case 'MOVIES_SEARCH':
       // console.log('MOVIES_SEARCH', action.moviesList);
       return {
+        term: action.term,
         movies: [...action.moviesList ]
       };
       

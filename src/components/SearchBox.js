@@ -6,6 +6,10 @@ export class SearchBox extends Component {
   state = {
     text: ''
   }
+  componentDidMount() {
+    this.setState(() => ({text: this.props.term}));
+  }
+ 
 
   onChange = (e) => {
     const text = e.target.value;
@@ -24,10 +28,13 @@ export class SearchBox extends Component {
     );
   }
 }
-  
 
+const mapStateToProps = ({search}) => ({
+  term: search.term
+});
+  
 const mapDispatchToProps = (dispatch) => ({
   startMoviesSearch: (term) => dispatch(startMoviesSearch(term))
 });
 
-export default connect(undefined, mapDispatchToProps)(SearchBox);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchBox);

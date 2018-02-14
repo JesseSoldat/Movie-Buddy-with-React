@@ -1,9 +1,20 @@
 import jsonp from 'jsonp';
 
-export const moviesSearch = (moviesList) => ({
+export const moviesSearch = (moviesList, term) => ({
   type: 'MOVIES_SEARCH',
+  term,
   moviesList
 });
+
+export const startRemoveFromSearch = (id) => {
+  return (dispatch, getState) => {
+    const movies = getState().search.movies;
+    const term = getState().search.term;
+
+    const newList = movies.filter(movie => movie.id !== id);
+    dispatch(moviesSearch(newList, term));
+  }
+}
 
 export const startMoviesSearch = (term) => {
   return (dispatch) => {
@@ -16,7 +27,7 @@ export const startMoviesSearch = (term) => {
       if (err) {
         console.error(err.message);
       } else {
-        dispatch(moviesSearch(data.results));
+        dispatch(moviesSearch(data.results, term));
       }
     });
   }
