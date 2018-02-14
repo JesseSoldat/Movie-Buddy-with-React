@@ -1,0 +1,34 @@
+.card-group {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  @media(min-width: $desktop-breakpoint) {
+    flex-direction: row;
+  }
+}
+
+.card {
+  align-items: center;
+  display: inline-block;
+  width: 30rem;
+  margin: $m-size;
+  height: 45rem;
+  background: fade-out($color: $blue, $amount: .15);
+  @media(min-width: $desktop-breakpoint) {
+
+  }  
+}
+
+.card__title {
+  text-align: center;
+  margin: $s-size auto;
+  width: 80%;
+}
+
+.card__poster {
+  display: block;
+  width: 80%;
+  margin: 0 auto;
+  height: 35rem;
+}

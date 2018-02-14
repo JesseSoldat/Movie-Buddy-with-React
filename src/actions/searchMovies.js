@@ -16,7 +16,7 @@ export const startMoviesSearch = (term) => {
       if (err) {
         console.error(err.message);
       } else {
-        dispatch(moviesSearch(data));
+        dispatch(moviesSearch(data.results));
       }
     });
   }
