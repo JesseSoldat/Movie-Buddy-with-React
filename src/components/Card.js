@@ -9,6 +9,11 @@ export class Card extends Component {
     this.props.startRemoveFromSearch(this.props.movie.id);
   }
 
+  onDelete = () => {
+    console.log('deleted');
+    
+  }
+
   render() {
     return (
       <div className="card">
@@ -17,15 +22,16 @@ export class Card extends Component {
           src={`http://image.tmdb.org/t/p/w500/${this.props.movie.poster_path}`} alt="movie poster"
         />
         <div className="card__button-group">
-          <button onClick={this.onFavorite}>Favorite</button>
+          {this.props.route === 'search' ? (<button onClick={this.onFavorite}>Favorite</button>) : (<button onClick={this.onDelete}>Delete</button>)}
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({search}, {movie}) => ({
+const mapStateToProps = ({search}, {route, movie}) => ({
   term: search.term,  
+  route,
   movie
 });
 
