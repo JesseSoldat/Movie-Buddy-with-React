@@ -6,10 +6,9 @@ export class DashboardPage extends Component {
   render() {
     return (
       <div>
-        DashboardPage
-        <Link to="/search">Search</Link>
+        <h1>DashboardPage</h1>
       </div>
-    )
+    );
   }
 }
 

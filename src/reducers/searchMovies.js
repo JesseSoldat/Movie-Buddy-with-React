@@ -1,6 +1,7 @@
 const initialState = {
   term: '',
-  movies: []
+  movies: [],
+  details: {}
 }
 
 export default (state = initialState, action) => {
@@ -8,9 +9,17 @@ export default (state = initialState, action) => {
     case 'MOVIES_SEARCH':
       // console.log('MOVIES_SEARCH', action.moviesList);
       return {
+        ...state,
         term: action.term,
-        movies: [...action.moviesList ]
+        movies: [...action.moviesList ],
       };
+
+    case 'GET_DETAILS':
+      // console.log('GET_DETAILS', action.movie);
+      return {
+        ...state,
+        details: action.movie
+      }; 
       
     default:
       return state;

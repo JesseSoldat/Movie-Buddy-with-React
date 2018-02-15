@@ -1,10 +1,10 @@
 import jsonp from 'jsonp';
+import {isLoading} from './loading';
+const apiKey = process.env.MOVIE_API;
+const baseUrl = 'https://api.themoviedb.org/3/';
+const callBack = 'callback=JSONP_CALLBACK';
+const popular = 'sort_by=popularity.desc';
 
-export const moviesSearch = (moviesList, term) => ({
-  type: 'MOVIES_SEARCH',
-  term,
-  moviesList
-});
 
 export const startRemoveFromSearch = (id) => {
   return (dispatch, getState) => {
@@ -16,14 +16,18 @@ export const startRemoveFromSearch = (id) => {
   }
 }
 
+//MOVIES_SEARCH------------------------------------
+export const moviesSearch = (moviesList, term) => ({
+  type: 'MOVIES_SEARCH',
+  term,
+  moviesList
+});
+
 export const startMoviesSearch = (term) => {
   return (dispatch) => {
-    const apiKey = process.env.MOVIE_API;
-    const baseUrl = 'https://api.themoviedb.org/3/';
-    const callBack = 'callback=JSONP_CALLBACK';
-    const popular = 'sort_by=popularity.desc';
+    const url = `${baseUrl}search/movie?query=${term}&${popular}&api_key=${apiKey}&${callBack}`;
 
-    jsonp(`${baseUrl}search/movie?query=${term}&${popular}&api_key=${apiKey}&${callBack}`, null, (err, data) => {
+    jsonp(url, null, (err, data) => {
       if (err) {
         console.error(err.message);
       } else {
@@ -32,4 +36,27 @@ export const startMoviesSearch = (term) => {
     });
   }
 
+}
+
+//GET_DETAILS------------------------------------
+export const getDetails = (movie = {}) => ({
+  type: 'GET_DETAILS',
+  movie
+});
+
+export const startGetDetails = (id) => {
+  return (dispatch, getState) => {
+  dispatch(isLoading(true));
+   const url = `${baseUrl}movie/${id}?api_key=${apiKey}`;
+
+    jsonp(url, null, (err, data) => {
+      if (err) {
+        dispatch(isLoading(false));
+        console.error(err.message);
+      } else {
+        dispatch(isLoading(false));
+        dispatch(getDetails(data));
+      }
+    });
+  }
 }

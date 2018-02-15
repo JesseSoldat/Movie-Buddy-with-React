@@ -22,6 +22,7 @@ export class SearchBox extends Component {
       <div>
         <input 
           type="text" 
+          className="text-input text-input__long"
           value={this.state.text}
           onChange={this.onChange}/>
       </div>

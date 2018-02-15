@@ -1,0 +1,31 @@
+.pannel {
+
+}
+
+.pannel__header {
+
+}
+
+.panel__body {
+  display: flex;
+  flex-direction: row;
+}
+
+//Left Pannel
+.panel__poster {
+  width: 48%;
+  margin-right: 4%;
+  .pannel__image {
+    width: 100%;
+  }
+}
+
+
+//Right Pannel
+.panel__details {
+  width: 48%;
+
+  .panel__list {
+
+  }
+}

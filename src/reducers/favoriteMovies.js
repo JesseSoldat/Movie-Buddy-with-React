@@ -4,6 +4,7 @@ export default (state = [], action) => {
       // console.log('GET_FAVORITE', action.favorites);       
       return action.favorites;
 
+
     case 'ADD_FAVORITE':
       // console.log('ADD_FAVORITE', action);
       return state;

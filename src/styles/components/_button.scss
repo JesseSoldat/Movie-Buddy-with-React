@@ -8,4 +8,16 @@
   line-height: 1;
   padding: $s-size;
   text-decoration: none;
+  border-radius: 3px;
+}
+
+.button__dark {
+  background: $dark-grey;
+  color: white;
+  margin-right: 5px;
+}
+
+.button__light {
+  background: $light-grey;
+  color: $dark-grey;
 }

@@ -6,14 +6,14 @@ import {changeRoute} from '../actions/route';
 
 class FavoritesPage extends Component {
   componentDidMount() {
-    this.props.changeRoute('favorites');
+    this.props.changeRoute('favorite');
     this.props.startGetFavorites();
   }
 
   render() {
     return (
       <div>
-        {this.props.favorites.map(favorite => (<Card key={favorite.id} movie={favorite} route={this.props.route} />))}
+        {this.props.favorites.map(favorite => (<Card key={favorite.id} movie={favorite} />))}
       </div>
     );
   }

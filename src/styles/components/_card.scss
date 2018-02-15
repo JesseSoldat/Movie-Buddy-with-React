@@ -13,8 +13,11 @@
   display: inline-block;
   width: 30rem;
   margin: $m-size;
-  height: 45rem;
-  background: fade-out($color: $blue, $amount: .15);
+  height: 49rem;
+  color: white;
+  border-radius: 3px;
+  box-shadow: black 5px 5px 5px;
+  background: $dark-blue;
   @media(min-width: $desktop-breakpoint) {
 
   }  
@@ -28,7 +31,11 @@
 
 .card__poster {
   display: block;
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
-  height: 35rem;
+  height: 38rem;
+}
+
+.card__button-group {
+  margin: $s-size $m-size;
 }

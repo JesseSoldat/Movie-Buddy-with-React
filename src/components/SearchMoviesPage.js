@@ -11,16 +11,16 @@ export class SearchMoviesPage extends Component {
   }
 
   renderCards = () => {
-    return this.props.movies.map(movie => <Card key={movie.id} movie={movie} route={this.props.route}  />);
+    return this.props.movies.map(movie => <Card key={movie.id} movie={movie} />);
   }
 
-  render() {
-    console.log(this.props);
-    
+  render() {    
     return (
       <div>
-        <h3>Search Movies Page</h3>
-        <SearchBox />
+        <div className="content-container">
+          <h3>Search Movies Page</h3>
+          <SearchBox />
+        </div>
         <div className="card-group">
           {this.renderCards()}
         </div>
